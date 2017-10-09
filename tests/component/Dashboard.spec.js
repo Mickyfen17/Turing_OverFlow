@@ -25,6 +25,6 @@ describe('Dashboard testing', () => {
     />);
 
     expect(w.find('.dashboard').length, 1).equal(1);
-    expect(w.find('Link').length, 1).equal(1);
+    expect(w.find('.add-question-link').length, 1).equal(1);
   });
 });

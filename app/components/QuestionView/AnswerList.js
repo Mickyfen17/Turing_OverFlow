@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactMarkdown from 'react-markdown';
 
-import Button from '../Button';
+import AuthButton from '../AuthButton';
 import AnswerDetail from './AnswerDetail';
 import AnswerInputContainer from '../../containers/AnswerInputContainer';
 
@@ -41,7 +41,7 @@ export default class AnswerList extends Component {
 
   render() {
     const { toggleInput, answersArray } = this.state;
-    const { question_id, updateAnswerCounters } = this.props;
+    const { question_id, updateAnswerCounters, auth } = this.props;
     const answerValue = answersArray.length < 2 ? 'Answer' : 'Answers';
 
     const answersComponents = this.state.answersArray.map(answer => {
@@ -49,6 +49,7 @@ export default class AnswerList extends Component {
         key={ answer.id }
         answer={ answer }
         updateAnswerCounters={ updateAnswerCounters }
+        auth={ auth }
       />;
     });
 
@@ -58,9 +59,10 @@ export default class AnswerList extends Component {
         <section className="answer-list-wrapper">
           { answersComponents }
         </section>
-          <Button
+          <AuthButton
             className="show-answer--btn"
             btnName={'Add a new Answer'}
+            auth={ auth }
             handleClick={() => this.toggleInput() }
           />
           {

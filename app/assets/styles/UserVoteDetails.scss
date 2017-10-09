@@ -12,6 +12,16 @@
     p {
       text-align: right;
     }
+    .detail-user-container {
+      display: flex;
+      justify-content: flex-end;;
+    }
+    .user_name {
+      margin-right: 10px;
+    }
+    .user-image {
+      height: 30px;
+    }
   }
   .vote-details-wrapper {
     display: flex;

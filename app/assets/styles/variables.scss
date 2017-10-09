@@ -111,3 +111,33 @@ $input-border-green: 2px solid #05c2d1;
     }
   }
 }
+
+@mixin loginLogoutBtn {
+  display: flex;
+  align-items: center;
+  padding: 5px 6px 5px 6px;
+  margin-right: 10px;
+  background: $turing-green;
+  border: 0;
+  border-radius: 2.5px;
+  color: $dark-grey;
+  text-decoration: none;
+  font-size: 0.7em;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:after {
+    margin: 0px;
+    display: inline-block;
+    content: "";
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: url(../images/github.svg) no-repeat 2.5px 2.5px/0px;
+    background-size: 20px 20px;
+    transition: all 0.3s;
+  }
+  &:hover {
+    background-color:  $turing-green;
+    border-radius: 10px;
+  }
+}

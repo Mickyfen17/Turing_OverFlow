@@ -47,6 +47,19 @@
 	float: right;
 }
 
+.login--btn {
+	@include loginLogoutBtn;
+}
+
+.logout--btn {
+	@include loginLogoutBtn;
+	width: 74px;
+	height: 35px;
+	&:after {
+		display: none;
+	}
+}
+
 @media screen and (min-width: 500px) {
   .search--btn {
 		width: 35px;

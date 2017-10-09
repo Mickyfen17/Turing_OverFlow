@@ -21,6 +21,7 @@ export default class QuestionDetail extends Component {
       title: '',
       updated_at: '',
       user_name: '',
+      user_img: '',
       views: '',
       votes: '',
       tags: [],
@@ -30,12 +31,12 @@ export default class QuestionDetail extends Component {
 
   componentWillMount() {
     const { questions, id } = this.props;
-    const q = questions.find((q) => {
-      return q.id * 1 === id * 1;
+    const question = questions.find((question) => {
+      return question.id * 1 === id * 1;
     });
 
-    if (q) {
-      this.fetchMatchedQuestion(q);
+    if (question) {
+      this.fetchMatchedQuestion(question);
     } else {
       this.fetchNewQuestion(id);
     }
@@ -83,7 +84,8 @@ export default class QuestionDetail extends Component {
   }
 
   render() {
-    const { title, question, user_name, answers, views, votes, created_at } = this.state;
+    const { title, question, user_name, user_img, answers, views, votes, created_at } = this.state;
+    const { auth } = this.props;
     const id = this.state.id || this.props.id;
     const tags = this.renderTags();
 
@@ -102,13 +104,15 @@ export default class QuestionDetail extends Component {
           </div>
           <UserVoteDetails
             user_name={ user_name }
+            user_img={ user_img }
             votes={ votes }
             handleVotes={ this.handleVotes }
             created_at={ created_at }
             details={'asked'}
+            auth={ auth }
           />
         </div>
-        <AnswerListContainer question_id={ id } />
+        <AnswerListContainer question_id={ id } auth={ auth }/>
       </section>
     );
   }

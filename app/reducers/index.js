@@ -6,6 +6,7 @@ import searchResults from './searchReducer';
 import popularQuestions from './popularQuestionsReducer';
 import recentTags from './recentTagsReducer';
 import storedHistory from './addHistoryReducer';
+import user from './userReducer';
 
 
 const appReducer = combineReducers({
@@ -14,6 +15,7 @@ const appReducer = combineReducers({
   popularQuestions,
   recentTags,
   storedHistory,
+  user,
 });
 
 const rootReducer = (state, action) => {

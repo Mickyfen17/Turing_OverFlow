@@ -20,7 +20,9 @@ export default class Search extends Component {
     const { fetchSearch, storedHistory } = this.props;
 
     if (searchTerm) {
-      fetchSearch(searchTerm).then(() => storedHistory.push(`/search/${searchTerm}`));
+      fetchSearch(searchTerm).then(() =>
+        storedHistory.push(`/search/${searchTerm}`),
+      );
       this.setState({ searchTerm: '' });
     } else {
       Alert.error('Please enter a term to search');
@@ -28,7 +30,7 @@ export default class Search extends Component {
   }
 
   componentDidMount() {
-    document.getElementsByClassName('search-input')[0].onkeypress = (e) => {
+    document.getElementsByClassName('search-input')[0].onkeypress = e => {
       if (!e) e = window.event; // stack o
       const keyCode = e.keyCode || e.which; // stack o
       if (keyCode === '13') {
@@ -43,9 +45,10 @@ export default class Search extends Component {
         <input
           className="search-input"
           placeholder="Search..."
-          value={ this.state.searchTerm }
-          onChange={(e) => this.setState({ searchTerm: e.target.value })}/>
-        <Button className="search--btn" handleClick={ this.searchDB }/>
+          value={this.state.searchTerm}
+          onChange={e => this.setState({ searchTerm: e.target.value })}
+        />
+        <Button className="search--btn" handleClick={this.searchDB} />
       </div>
     );
   }

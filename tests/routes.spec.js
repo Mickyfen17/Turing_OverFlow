@@ -132,6 +132,7 @@ describe('API Routes', () => {
         title: 'Where do you put the script tag for JavaScript?',
         question: 'Where is the correct place to put the JavaScript tag in the HTML file?',
         user_name: 'Kyle Zucker',
+        user_img: 'url_for_user_github_image',
         tags: ['JavaScript', 'React'],
       })
       .end((error, response) => {
@@ -141,6 +142,7 @@ describe('API Routes', () => {
         response.body.title.should.equal('Where do you put the script tag for JavaScript?');
         response.body.question.should.equal('Where is the correct place to put the JavaScript tag in the HTML file?');
         response.body.user_name.should.equal('Kyle Zucker');
+        response.body.user_img.should.equal('url_for_user_github_image');
         chai.request(server)
         .get('/api/v1/questions/1')
         .end((err, response) => {
@@ -181,6 +183,7 @@ describe('API Routes', () => {
         answer: 'You should put it inside the body of your HTML file',
         question_id: '1001',
         user_name: 'Staci McWilliams',
+        user_img: 'url_for_user_github_image',
       })
       .end((error, response) => {
         response.should.have.status(201);
@@ -188,6 +191,7 @@ describe('API Routes', () => {
         response.body.should.have.property('id');
         response.body.should.have.property('answer');
         response.body.should.have.property('user_name');
+        response.body.should.have.property('user_img');
         chai.request(server)
         .get('/api/v1/answers')
         .end((err, response) => {

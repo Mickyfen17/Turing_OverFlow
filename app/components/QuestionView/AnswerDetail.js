@@ -24,7 +24,7 @@ export default class AnswerDetail extends Component {
   }
 
   render() {
-    const { user_name, handleAnswerVotes, created_at, answer } = this.props.answer;
+    const { answer: { user_name, user_img, handleAnswerVotes, created_at, answer }, auth } = this.props;
     const { votes } = this.state;
     return (
       <div className="answer-detail">
@@ -36,10 +36,12 @@ export default class AnswerDetail extends Component {
         </Highlight>
         <UserVoteDetails
           user_name={ user_name }
+          user_img={ user_img }
           votes={ votes }
           handleVotes={ this.handleAnswerVotes }
           created_at={ created_at }
           details={'answered'}
+          auth={ auth }
         />
       </div>
     );

@@ -104,13 +104,13 @@ router.get('/questions/:id/tags', (request, response) => {
 });
 
 router.post('/answers', (request, response) => {
-  const validAnswer = ['answer', 'question_id', 'user_name'].every(param => request.body[param]);
-  const { answer, user_name, question_id } = request.body;
+  const validAnswer = ['answer', 'question_id', 'user_name', 'user_img'].every(param => request.body[param]);
+  const { answer, user_name, question_id, user_img } = request.body;
 
   if (!validAnswer) {
     return response.status(422).send({ error: 'You are missing content from answer ' });
   }
-  database('answers').insert({ answer, user_name, question_id }, ['id', 'answer', 'user_name'])
+  database('answers').insert({ answer, user_name, question_id, user_img }, ['id', 'answer', 'user_name', 'user_img'])
   .then((addedAnswer) => {
     response.status(201).send(...addedAnswer);
   })
@@ -121,14 +121,14 @@ router.post('/answers', (request, response) => {
 
 
 router.post('/questions', (request, response) => {
-  const validQuestion = ['title', 'question', 'user_name', 'tags'].every(param => request.body[param]);
-  const { title, question, user_name, tags } = request.body;
+  const validQuestion = ['title', 'question', 'user_name', 'tags', 'user_img'].every(param => request.body[param]);
+  const { title, question, user_name, tags, user_img } = request.body;
 
   if (!validQuestion) {
     return response.status(422).send({ error: 'You are missing content from post ' });
   }
 
-  database('questions').insert({ title, question, user_name }, ['id', 'title', 'question', 'user_name', 'created_at'])
+  database('questions').insert({ title, question, user_name, user_img }, ['id', 'title', 'question', 'user_name', 'user_img', 'created_at'])
   .then((addedQuestion) => {
     Promise.all([
       tags.forEach((tag) => {
@@ -198,7 +198,6 @@ router.get('/search/tag/:tag', (request, response) => {
   .limit(20)
   .then(tagMatches => {
     const convertedMatches = utils.alterTimeStamp(tagMatches);
-    console.log(convertedMatches);
     response.status(200).json(convertedMatches);
   })
   .catch(error => {
